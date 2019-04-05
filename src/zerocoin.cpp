@@ -9,6 +9,7 @@
 #include "wallet/walletdb.h"
 #include "consensus/consensus.h"
 #include "spork.h"
+#include "bznode-sync.h"
 
 #include <atomic>
 #include <sstream>
@@ -354,7 +355,7 @@ bool CheckMintBitcoinzeroTransaction(const CTxOut &txout,
 
 bool CheckZerocoinFoundersInputs(const CTransaction &tx, CValidationState &state, int nHeight, bool fTestNet) {
     // Check for founders inputs
-        if (sporkManager.IsSporkActive(SPORK_7_FEE_CHECKS))
+        if (sporkManager.IsSporkActive(SPORK_7_FEE_CHECKS) && bznodeSync.IsSynced()
 		{
 				bool found_1 = false;
 				bool found_2 = false;

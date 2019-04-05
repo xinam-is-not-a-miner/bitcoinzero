@@ -39,7 +39,7 @@ bool IsBlockPayeeValid(const CTransaction &txNew, int nBlockHeight, CAmount bloc
     if (mnpayments.IsTransactionValid(txNew, nBlockHeight)) {
         return true;
     } else {
-        if (sporkManager.IsSporkActive(SPORK_7_FEE_CHECKS)) {
+        if (sporkManager.IsSporkActive(SPORK_7_FEE_CHECKS) && bznodeSync.IsSynced()) {
             return false;
         } else {
             LogPrintf("BZNode payment enforcement is disabled, accepting block\n");
